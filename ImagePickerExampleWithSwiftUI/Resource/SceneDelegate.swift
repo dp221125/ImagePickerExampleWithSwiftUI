@@ -6,7 +6,7 @@
 //  Copyright © 2020 Seokho. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         
         let dataManager = DataManager(persistentContainer: persistentContainer)
-        let viewController = UINavigationController(rootViewController: MainViewController(dataManager: dataManager))
+        let viewController = UIHostingController(rootView: MainView(dataManager: dataManager))
         self.window?.rootViewController = viewController
         self.window?.makeKeyAndVisible()
     }

@@ -11,12 +11,11 @@ import Combine
 
 struct AddView: View {
     
-    let viewController: UIViewController
     @ObservedObject
     private var viewModel: AddViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    init(viewController: UIViewController, viewModel: AddViewModel) {
-        self.viewController = viewController
+    init(viewModel: AddViewModel) {
         self.viewModel = viewModel
     }
     
@@ -69,13 +68,13 @@ struct AddView: View {
             }
             .navigationBarTitle("ADD IMAGE" ,displayMode: .inline)
             .navigationBarItems(leading: Button(action: {
-                self.viewController.dismiss(animated: true)
+                self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("취소")
                     .foregroundColor(Color(.label))
             }, trailing: Button(action: {
                 self.viewModel.doneButtonPressed()
-                self.viewController.dismiss(animated: true)
+                self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("확인")
                         .foregroundColor(Color(viewModel.isVaildData ? .label: .systemGray))

@@ -9,23 +9,19 @@
 import Foundation
 
 protocol TableViewCellViewModel {
-    static var reuseIdentifier: String { get }
+    var index: Int { get }
 }
 
-class MainCellViewModel: TableViewCellViewModel  {
-    static var reuseIdentifier: String = "\(MainCell.self)"
+class MainCellViewModel: TableViewCellViewModel, ObservableObject  {
     var title: String?
     var date: Date?
     var imageData: Data?
+    var index: Int
     
-    init(data: Images) {
+    init(data: Images, index: Int) {
         self.title = data.title
         self.date = data.date
         self.imageData = data.image
-    }
-    
-    init() {
-        self.title = "Is Only Test"
-        self.date = Date()
+        self.index = index
     }
 }
